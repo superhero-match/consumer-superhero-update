@@ -6,9 +6,9 @@ import (
 	"github.com/consumer-superhero-update/internal/es/model"
 )
 
-// UpdateSuperhero saves newly registered superhero in Elasticsearch.
+// UpdateSuperhero updates existing Superhero in Elasticsearch.
 func (es *ES) UpdateSuperhero(s *model.Superhero) error {
-	sourceID, err := es.GetDocumentID(s.Email)
+	sourceID, err := es.GetDocumentID(s.ID)
 	if err != nil {
 		return err
 	}
@@ -17,7 +17,6 @@ func (es *ES) UpdateSuperhero(s *model.Superhero) error {
 		Index(es.Index).
 		Id(sourceID).
 		Doc(map[string]interface{}{
-			"main_profile_pic_url":     s.MainProfilePicURL,
 			"looking_for_gender":       s.LookingForGender,
 			"age":                      s.Age,
 			"looking_for_age_min":      s.LookingForAgeMin,
@@ -29,10 +28,6 @@ func (es *ES) UpdateSuperhero(s *model.Superhero) error {
 			"city":                     s.City,
 			"superpower":               s.SuperPower,
 			"account_type":             s.AccountType,
-			"is_deleted":               s.IsDeleted,
-			"deleted_at":               s.DeletedAt,
-			"is_blocked":               s.IsBlocked,
-			"blocked_at":               s.BlockedAt,
 			"updated_at":               s.UpdatedAt,
 		}).
 		Do(context.Background())

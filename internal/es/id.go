@@ -7,8 +7,8 @@ import (
 )
 
 // GetDocumentID fetches document source id, it is needed for update function.
-func (es *ES) GetDocumentID(email string) (string, error) {
-	q := elastic.NewTermQuery("email", email)
+func (es *ES) GetDocumentID(superheroID string) (string, error) {
+	q := elastic.NewTermQuery("superhero_id", superheroID)
 
 	searchResult, err := es.Client.Search().
 		Index(es.Index).

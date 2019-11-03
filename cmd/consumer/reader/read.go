@@ -55,11 +55,6 @@ func (r *Reader) Read() error {
 
 		err = r.DB.UpdateSuperhero(dbm.Superhero{
 			ID:                    s.ID,
-			Email:                 s.Email,
-			Name:                  s.Name,
-			SuperheroName:         s.SuperheroName,
-			MainProfilePicURL:     s.MainProfilePicURL,
-			Gender:                s.Gender,
 			LookingForGender:      s.LookingForGender,
 			Age:                   s.Age,
 			LookingForAgeMin:      s.LookingForAgeMin,
@@ -68,17 +63,11 @@ func (r *Reader) Read() error {
 			DistanceUnit:          s.DistanceUnit,
 			Lat:                   s.Lat,
 			Lon:                   s.Lon,
-			Birthday:              s.Birthday,
 			Country:               s.Country,
 			City:                  s.City,
 			SuperPower:            s.SuperPower,
 			AccountType:           s.AccountType,
-			IsDeleted:             s.IsDeleted,
-			DeletedAt:             s.DeletedAt,
-			IsBlocked:             s.IsBlocked,
-			BlockedAt:             s.BlockedAt,
 			UpdatedAt:             s.UpdatedAt,
-			CreatedAt:             s.CreatedAt,
 		}, )
 		if err != nil {
 			fmt.Println("DB")
@@ -93,11 +82,6 @@ func (r *Reader) Read() error {
 
 		err = r.ES.UpdateSuperhero(&esm.Superhero{
 			ID:                    s.ID,
-			Email:                 s.Email,
-			Name:                  s.Name,
-			SuperheroName:         s.SuperheroName,
-			MainProfilePicURL:     s.MainProfilePicURL,
-			Gender:                s.Gender,
 			LookingForGender:      s.LookingForGender,
 			Age:                   s.Age,
 			LookingForAgeMin:      s.LookingForAgeMin,
@@ -108,17 +92,11 @@ func (r *Reader) Read() error {
 				Lat: s.Lat,
 				Lon: s.Lon,
 			},
-			Birthday:    s.Birthday,
 			Country:     s.Country,
 			City:        s.City,
 			SuperPower:  s.SuperPower,
 			AccountType: s.AccountType,
-			IsDeleted:   s.IsDeleted,
-			DeletedAt:   s.DeletedAt,
-			IsBlocked:   s.IsBlocked,
-			BlockedAt:   s.BlockedAt,
 			UpdatedAt:   s.UpdatedAt,
-			CreatedAt:   s.CreatedAt,
 		}, )
 		if err != nil {
 			fmt.Println("ES")
