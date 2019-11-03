@@ -6,7 +6,6 @@ import "github.com/consumer-superhero-update/internal/db/model"
 func(db *DB) UpdateSuperhero(s model.Superhero) error {
 	_, err := db.stmtUpdateSuperhero.Exec(
 		s.ID,
-		s.MainProfilePicURL,
 		s.LookingForGender,
 		s.Age,
 		s.LookingForAgeMin,
@@ -19,10 +18,6 @@ func(db *DB) UpdateSuperhero(s model.Superhero) error {
 		s.City,
 		s.SuperPower,
 		s.AccountType,
-		s.IsDeleted,
-		s.DeletedAt,
-		s.IsBlocked,
-		s.BlockedAt,
 		s.UpdatedAt,
 	)
 	if err != nil {
