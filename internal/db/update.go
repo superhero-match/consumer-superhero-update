@@ -13,7 +13,9 @@
 */
 package db
 
-import "github.com/consumer-superhero-update/internal/db/model"
+import (
+	"github.com/superhero-match/consumer-superhero-update/internal/db/model"
+)
 
 // UpdateSuperhero saves newly registered Superhero.
 func(db *DB) UpdateSuperhero(s model.Superhero) error {

@@ -14,4 +14,3 @@ db:
 consumer:
   brokers: ['192.168.178.26:9092']
   topic: 'update.municipality.superhero'
-  group_id: 'consumer-update-group'
