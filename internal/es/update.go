@@ -16,7 +16,7 @@ package es
 import (
 	"context"
 	"fmt"
-	"github.com/consumer-superhero-update/internal/es/model"
+	"github.com/superhero-match/consumer-superhero-update/internal/es/model"
 )
 
 // UpdateSuperhero updates existing Superhero in Elasticsearch.
