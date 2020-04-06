@@ -4,17 +4,16 @@
     <list default="true" id="f1a17cbc-47f4-44bf-8439-70a3e96b60c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/074b308f-5aa3-4266-a68a-ae8aa91dd4c0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/074b308f-5aa3-4266-a68a-ae8aa91dd4c0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/consumer/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/consumer/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/consumer/reader/read.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/consumer/reader/read.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/consumer/reader/reader.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/consumer/reader/reader.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/config/consumer.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/consumer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/consumer/consumer.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/consumer/consumer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/db/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/db/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/db/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/db/update.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/config/es.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/es.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/es/es.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/es/es.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/es/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/es/update.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/es/id.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/es/id.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/es/model/superhero.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/es/model/superhero.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +68,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
       <set>
@@ -86,10 +88,12 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../firebase-token" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -105,7 +109,7 @@
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/cmd/consumer/main.go" />
-      <package value="github.com/consumer-superhero-update/cmd/consumer" />
+      <package value="github.com/superhero-match/consumer-superhero-update/cmd/consumer" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -131,10 +135,34 @@
       </map>
     </option>
   </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <proxy>direct</proxy>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1583085995718">
+    <state x="397" y="0" key="#go_build_github.com/consumer-superhero-update/cmd/consumer" timestamp="1586161848249">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583085995718" />
+    <state x="397" y="0" key="#go_build_github.com/consumer-superhero-update/cmd/consumer/0.0.1366.728@0.0.1366.728" timestamp="1586161848249" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1583851204344">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583851204344" />
+    <state width="1323" height="363" key="GridCell.Tab.0.bottom" timestamp="1586162669341">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="363" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586162669341" />
+    <state width="1323" height="363" key="GridCell.Tab.0.center" timestamp="1586162669341">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="363" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586162669341" />
+    <state width="1323" height="363" key="GridCell.Tab.0.left" timestamp="1586162669340">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="363" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586162669340" />
+    <state width="1323" height="363" key="GridCell.Tab.0.right" timestamp="1586162669341">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="363" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586162669341" />
   </component>
 </project>
