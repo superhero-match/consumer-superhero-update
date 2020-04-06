@@ -1,5 +1,5 @@
 es:
-  host: '192.168.178.26'
+  host: '192.168.0.105'
   port: '9200'
   cluster: 'superheromatch'
   index: 'superhero'
@@ -12,5 +12,5 @@ db:
   name: 'municipality'
 
 consumer:
-  brokers: ['192.168.178.26:9092']
+  brokers: ['192.168.0.105:9092']
   topic: 'update.municipality.superhero'
