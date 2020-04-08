@@ -13,7 +13,7 @@ dkb:
 	docker build -t consumer-superhero-update .
 
 dkr:
-	docker run consumer-superhero-update
+	docker run -p "8090:8090" consumer-superhero-update
 
 launch: dkb dkr
 
