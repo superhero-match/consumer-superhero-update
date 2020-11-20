@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2019 - 2020 MWSOFT
+  Copyright (C) 2019 - 2021 MWSOFT
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -24,6 +24,10 @@ func (es *ES) UpdateSuperhero(s *model.Superhero) error {
 	sourceID, err := es.GetDocumentID(s.ID)
 	if err != nil {
 		return err
+	}
+
+	if len(sourceID) == 0 {
+		return nil
 	}
 
 	update, err := es.Client.Update().
