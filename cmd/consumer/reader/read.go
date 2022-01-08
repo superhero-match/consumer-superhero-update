@@ -17,23 +17,23 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	dbm "github.com/superhero-match/consumer-superhero-update/internal/db/model"
 	"time"
 
 	elastic "github.com/olivere/elastic/v7"
-
-	"github.com/superhero-match/consumer-superhero-update/internal/consumer/model"
-	esm "github.com/superhero-match/consumer-superhero-update/internal/es/model"
 	"go.uber.org/zap"
+
+	"github.com/superhero-match/consumer-superhero-update/cmd/consumer/model"
+	dbm "github.com/superhero-match/consumer-superhero-update/internal/db/model"
+	esm "github.com/superhero-match/consumer-superhero-update/internal/es/model"
 )
 
-// Read consumes the Kafka topic and stores the newly registered superhero to DB and Elasticsearch.
-func (r *Reader) Read() error {
+// Read consumes the Kafka topic and updates superhero in DB and Elasticsearch.
+func (r *reader) Read() error {
 	ctx := context.Background()
 
 	for {
 		fmt.Print("before FetchMessage")
-		m, err := r.Consumer.Consumer.FetchMessage(ctx)
+		m, err := r.Consumer.FetchMessage(ctx)
 		fmt.Print("after FetchMessage")
 		if err != nil {
 			r.Logger.Error(
@@ -42,7 +42,7 @@ func (r *Reader) Read() error {
 				zap.String("time", time.Now().UTC().Format(r.TimeFormat)),
 			)
 
-			err = r.Consumer.Consumer.Close()
+			err = r.Consumer.Close()
 			if err != nil {
 				r.Logger.Error(
 					"failed to close consumer",
@@ -67,7 +67,7 @@ func (r *Reader) Read() error {
 
 		var s model.Superhero
 		if err := json.Unmarshal(m.Value, &s); err != nil {
-			_ = r.Consumer.Consumer.Close()
+			_ = r.Consumer.Close()
 			if err != nil {
 				r.Logger.Error(
 					"failed to unmarshal JSON to superhero",
@@ -75,7 +75,7 @@ func (r *Reader) Read() error {
 					zap.String("time", time.Now().UTC().Format(r.TimeFormat)),
 				)
 
-				err = r.Consumer.Consumer.Close()
+				err = r.Consumer.Close()
 				if err != nil {
 					r.Logger.Error(
 						"failed to close consumer",
@@ -105,7 +105,7 @@ func (r *Reader) Read() error {
 			SuperPower:            s.SuperPower,
 			AccountType:           s.AccountType,
 			UpdatedAt:             s.UpdatedAt,
-		}, )
+		})
 		if err != nil {
 			r.Logger.Error(
 				"failed to update superhero in database",
@@ -113,7 +113,7 @@ func (r *Reader) Read() error {
 				zap.String("time", time.Now().UTC().Format(r.TimeFormat)),
 			)
 
-			err = r.Consumer.Consumer.Close()
+			err = r.Consumer.Close()
 			if err != nil {
 				r.Logger.Error(
 					"failed to close consumer",
@@ -144,7 +144,7 @@ func (r *Reader) Read() error {
 			SuperPower:  s.SuperPower,
 			AccountType: s.AccountType,
 			UpdatedAt:   s.UpdatedAt,
-		}, )
+		})
 		if err != nil {
 			r.Logger.Error(
 				"failed to update superhero in Elasticsearch",
@@ -152,29 +152,29 @@ func (r *Reader) Read() error {
 				zap.String("time", time.Now().UTC().Format(r.TimeFormat)),
 			)
 
-			err = r.Consumer.Consumer.Close()
+			err = r.Consumer.Close()
 			if err != nil {
 				r.Logger.Error(
 					"failed to close consumer",
 					zap.String("err", err.Error()),
 					zap.String("time", time.Now().UTC().Format(r.TimeFormat)),
 				)
-				
+
 				return err
 			}
 
 			return err
 		}
 
-		err = r.Consumer.Consumer.CommitMessages(ctx, m)
+		err = r.Consumer.CommitMessages(ctx, m)
 		if err != nil {
 			r.Logger.Error(
 				"failed to commit message",
 				zap.String("err", err.Error()),
 				zap.String("time", time.Now().UTC().Format(r.TimeFormat)),
 			)
-			
-			err = r.Consumer.Consumer.Close()
+
+			err = r.Consumer.Close()
 			if err != nil {
 				r.Logger.Error(
 					"failed to close consumer",
