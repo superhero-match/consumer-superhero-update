@@ -16,11 +16,12 @@ package es
 import (
 	"context"
 	"fmt"
+
 	"github.com/superhero-match/consumer-superhero-update/internal/es/model"
 )
 
 // UpdateSuperhero updates existing Superhero in Elasticsearch.
-func (es *ES) UpdateSuperhero(s *model.Superhero) error {
+func (es *es) UpdateSuperhero(s *model.Superhero) error {
 	sourceID, err := es.GetDocumentID(s.ID)
 	if err != nil {
 		return err

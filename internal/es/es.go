@@ -15,12 +15,21 @@ package es
 
 import (
 	"fmt"
+
 	elastic "github.com/olivere/elastic/v7"
+
 	"github.com/superhero-match/consumer-superhero-update/internal/config"
+	"github.com/superhero-match/consumer-superhero-update/internal/es/model"
 )
 
-// ES holds all the Elasticsearch client relevant data.
-type ES struct {
+// ES interface defines es methods.
+type ES interface {
+	GetDocumentID(superheroID string) (string, error)
+	UpdateSuperhero(s *model.Superhero) error
+}
+
+// es holds all the Elasticsearch client relevant data.
+type es struct {
 	Client  *elastic.Client
 	Host    string
 	Port    string
@@ -29,7 +38,7 @@ type ES struct {
 }
 
 // NewES creates a client and connects to it.
-func NewES(cfg *config.Config) (es *ES, err error) {
+func NewES(cfg *config.Config) (e ES, err error) {
 	client, err := elastic.NewClient(
 		elastic.SetURL(
 			fmt.Sprintf(
@@ -43,7 +52,7 @@ func NewES(cfg *config.Config) (es *ES, err error) {
 		return nil, err
 	}
 
-	return &ES{
+	return &es{
 		Client:  client,
 		Host:    cfg.ES.Host,
 		Port:    cfg.ES.Port,
