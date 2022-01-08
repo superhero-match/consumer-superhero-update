@@ -17,20 +17,26 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/superhero-match/consumer-superhero-update/internal/config"
-
 	_ "github.com/go-sql-driver/mysql" // MySQL driver.
+
+	"github.com/superhero-match/consumer-superhero-update/internal/config"
+	"github.com/superhero-match/consumer-superhero-update/internal/db/model"
 )
 
-// DB holds the database connection.
-type DB struct {
-	DB *sql.DB
+// DB interface defines database methods.
+type DB interface {
+	UpdateSuperhero(s model.Superhero) error
+}
+
+// db holds the database connection.
+type db struct {
+	DB                  *sql.DB
 	stmtUpdateSuperhero *sql.Stmt
 }
 
 // NewDB returns database.
-func NewDB(cfg *config.Config) (dbs *DB, err error) {
-	db, err := sql.Open(
+func NewDB(cfg *config.Config) (dbs DB, err error) {
+	dtbs, err := sql.Open(
 		"mysql",
 		fmt.Sprintf(
 			"%s:%s@tcp(%s:%d)/%s",
@@ -45,13 +51,13 @@ func NewDB(cfg *config.Config) (dbs *DB, err error) {
 		return nil, err
 	}
 
-	stmtUpd, err := db.Prepare(`call update_superhero(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
+	stmtUpd, err := dtbs.Prepare(`call update_superhero(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
 	if err != nil {
 		return nil, err
 	}
 
-	return &DB{
-		DB: db,
+	return &db{
+		DB:                  dtbs,
 		stmtUpdateSuperhero: stmtUpd,
 	}, nil
 }

@@ -17,8 +17,8 @@ import (
 	"github.com/superhero-match/consumer-superhero-update/internal/db/model"
 )
 
-// UpdateSuperhero saves newly registered Superhero.
-func(db *DB) UpdateSuperhero(s model.Superhero) error {
+// UpdateSuperhero updates Superhero.
+func (db *db) UpdateSuperhero(s model.Superhero) error {
 	_, err := db.stmtUpdateSuperhero.Exec(
 		s.ID,
 		s.LookingForGender,
